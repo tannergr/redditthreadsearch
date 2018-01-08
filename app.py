@@ -28,7 +28,9 @@ def index():
 
 @app.route('/results')
 def results():
-    reddit = praw.Reddit('bot1')
+    reddit = praw.Reddit(client_id=os.environ.get('cid'),
+                     client_secret=os.environ.get('csecret'),
+                     user_agent=os.environ.get('cagent'))
     subreddit = reddit.subreddit(request.args.get('subreddit'))
     keys = request.args.get('searchTerm').split()
     searchTerm = request.args.get('thread')
