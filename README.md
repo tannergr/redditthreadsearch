@@ -6,4 +6,4 @@ group of daily chat Reddit threads and "CTRL-F"ing over and over.
 
 ## Deployment
 
-The app is deployed on Heroku and can be found [here](reddit.tlgraham.com).
+The app is deployed on Heroku and can be found [here](http://reddit.tlgraham.com).
