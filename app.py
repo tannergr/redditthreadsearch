@@ -56,7 +56,7 @@ def results():
         submission.comments.replace_more(limit=None)
         for topcomment in submission.comments:
             for key in keys:
-                if key in topcomment.body:
+                if key.lower() in topcomment.body.lower():
                     found = True
                     if(submission in results.keys()):
                         results[submission].append(topcomment)
@@ -90,7 +90,8 @@ def recurseBuilder(result, isTop, keys):
 
 def boldKey(body, keys):
     for key in keys:
-        body = body.replace(key, "<b>"+key+"</b>")
+        body = body.replace(key.lower(), "<b>"+key.upper()+"</b>")
+        body = body.replace(key[0:1].upper()+key[1:],"<b>"+key.upper()+"</b>")
     return body
 
 def sub_exists(sub, reddit):
