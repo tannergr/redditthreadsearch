@@ -6,11 +6,21 @@
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-
+        <script src="{{ url_for('static', filename='javascript.js') }}"></script>
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='loading.css') }}">
 
     </head>
     <body  >
+        <div id="loading"><p><div class="loader">
+      		<div class="square" id="sqr0"></div>
+      		<div class="square" id="sqr1"></div>
+      		<div class="square" id="sqr2"></div>
+      		<div class="square" id="sqr3"></div>
+      		<div class="square" id="sqr4"></div>
+      		<div class="square" id="sqr5"></div>
+      		<div class="square" id="sqr6"></div>
+      	</div><h1>Loading...</h1></p></div>
         <div>
           <div class="banner">
             <h1>Reddit Thread Search</h1>

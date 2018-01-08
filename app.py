@@ -30,12 +30,15 @@ def index():
 
 @app.route('/results')
 def results():
-    reddit = praw.Reddit(client_id=os.environ.get('cid'),
+    if not os.environ.get('envtype') == "prod":
+        reddit = praw.Reddit('bot1')
+    else:
+        reddit = praw.Reddit(client_id=os.environ.get('cid'),
                      client_secret=os.environ.get('csecret'),
                      user_agent=os.environ.get('cagent'))
     subredditstring = request.args.get('subreddit').replace(" ", "")
-    if not sub_exists(subredditstring):
-        return render_template('results.html', results=Markup("<p class=\"error\">Subreddit"+subredditstring+"not found!</p>"))
+    if not sub_exists(subredditstring, reddit):
+        return render_template('results.html', results=Markup('<p class="error">Subreddit <b>'+subredditstring+'</b> not found!<br><br><br><a href="\\" class="goback"> Try Again! </a></p>'))
     subreddit = reddit.subreddit(subredditstring)
     keys = request.args.get('searchTerm').split()
     searchTerm = request.args.get('thread')
@@ -61,14 +64,14 @@ def results():
                         results[submission] = [topcomment]
 
     if not found:
-        return render_template('results.html', results=Markup("<p>No Results</p>"))
+        return render_template('results.html', results=Markup('<p class="error">No Results<br><br><br><a href="\\" class="goback"> Try Again! </a></p>'))
     return render_template('results.html', results=Markup(resultBuilder(results, keys)))
 
 
 def resultBuilder(results, keys):
     resString = ""
     for submission, comments in results.items():
-        resString += '<a class="submissionTitle"href=%s>%s</a>' %(submission.permalink, submission.title)
+        resString += '<a class="submissionTitle"href=%s>%s</a>' %("http://reddit.com"+submission.permalink, submission.title)
         for comment in comments:
             resString += recurseBuilder(comment, True, keys)
     return resString
@@ -76,7 +79,7 @@ def resultBuilder(results, keys):
 def recurseBuilder(result, isTop, keys):
     resString = '<br><div class="boxes" >'
     if(isTop):
-        resString += '<a class="topcomment" href="http://reddit.com"%s>%s</a>' %(result.permalink, boldKey(result.body, keys))
+        resString += '<a class="topcomment" href=%s>%s</a>' %("http://reddit.com"+result.permalink, boldKey(result.body, keys))
     else:
         resString += "<p class=subcomment>%s</p>" %(result.body)
     for nextResult in result.replies:
@@ -90,10 +93,10 @@ def boldKey(body, keys):
         body = body.replace(key, "<b>"+key+"</b>")
     return body
 
-def sub_exists(sub):
+def sub_exists(sub, reddit):
     exists = True
     try:
         reddit.subreddits.search_by_name(sub, exact=True)
-    except NotFound
+    except NotFound:
         exists = False
     return exists

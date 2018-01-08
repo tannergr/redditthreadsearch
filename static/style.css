@@ -2,6 +2,8 @@ html{
   font-family: 'Montserrat', sans-serif;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  padding:0;
+  margin: 0;
 }
 body{
   background-color: white;
@@ -72,4 +74,31 @@ input[type=text]:focus, textarea:focus {
 input[type=submit]{
   width:200px;
   font-size: 32px;
+}
+.error{
+  text-align: center;
+  color: red;
+}
+.goback{
+  text-align: center;
+  background-color: grey;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 3px;
+  margin-top: 40px;
+}
+.goback:hover{
+  background-color:  rgba(22, 160, 133,1.0);
+}
+#loading{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+  display: none;
+  background-color: rgba(255,255,255,0.6);
+  text-align: center;
+  top:0;
+  left:0;
 }
