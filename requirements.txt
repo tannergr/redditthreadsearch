@@ -2,3 +2,4 @@ Flask
 gunicorn
 praw
 flask_wtf
+prawcore

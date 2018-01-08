@@ -3,6 +3,7 @@ from flask import render_template, flash, redirect, request, Markup
 import searchForm
 import config
 import praw
+from prawcore import NotFound
 import os
 
 MAX_VALUES = 30
@@ -32,7 +33,10 @@ def results():
     reddit = praw.Reddit(client_id=os.environ.get('cid'),
                      client_secret=os.environ.get('csecret'),
                      user_agent=os.environ.get('cagent'))
-    subreddit = reddit.subreddit(request.args.get('subreddit'))
+    subredditstring = request.args.get('subreddit').replace(" ", "")
+    if not sub_exists(subredditstring):
+        return render_template('results.html', results=Markup("<p class=\"error\">Subreddit"+subredditstring+"not found!</p>"))
+    subreddit = reddit.subreddit(subredditstring)
     keys = request.args.get('searchTerm').split()
     searchTerm = request.args.get('thread')
     if(request.args.get('postAuthor')):
@@ -85,3 +89,11 @@ def boldKey(body, keys):
     for key in keys:
         body = body.replace(key, "<b>"+key+"</b>")
     return body
+
+def sub_exists(sub):
+    exists = True
+    try:
+        reddit.subreddits.search_by_name(sub, exact=True)
+    except NotFound
+        exists = False
+    return exists
