@@ -71,10 +71,6 @@ input[type=text]:focus, textarea:focus {
   margin: 5px 1px 3px 0px;
   border: 1px solid rgba(81, 203, 238, 1);
 }
-input[type=submit]{
-  width:200px;
-  font-size: 32px;
-}
 .error{
   text-align: center;
   color: red;
@@ -101,4 +97,19 @@ input[type=submit]{
   text-align: center;
   top:0;
   left:0;
+}
+#submitb>input{
+  font-size: 32px;
+  border: none;
+  outline: none;
+  text-align: center;
+  background-color: grey;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 3px;
+  margin-top: 40px;
+}
+#submitb>input:hover{
+  background-color:  rgba(22, 160, 133,1.0);
 }
