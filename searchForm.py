@@ -3,9 +3,9 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField, Integ
 from wtforms.validators import DataRequired
 
 class Form(FlaskForm):
-    subreddit = StringField('Subreddit', validators=[DataRequired()])
-    thread = StringField('Thread Name', validators=[DataRequired()])
-    postAuthor = StringField('Thread Author', validators=[DataRequired()])
-    searchTerm = StringField('Search Term', validators=[DataRequired()])
-    searchNumber = IntegerField('Number threads searched', validators=[DataRequired()])
+    subreddit = StringField('Subreddit', validators=[DataRequired()], default="cscareerquestions")
+    thread = StringField('Thread Name', validators=[DataRequired()], default="Daily Chat")
+    postAuthor = StringField('Thread Author', validators=[DataRequired()], default="AutoModerator")
+    searchTerm = StringField('Search Term', validators=[DataRequired()], default="Interview")
+    searchNumber = IntegerField('Number threads searched', validators=[DataRequired()], default="5")
     submit = SubmitField('Search')
