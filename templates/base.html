@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>RedditThreadSearch</title>
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
+    </head>
+    <body  >
+        <div>
+          <div class="banner">
+            <h1>Reddit Thread Search</h1>
+          </div>
+          <div class="bannerspot">
+            <h1>Reddit Thread Search</h1>
+          </div>
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+</html>

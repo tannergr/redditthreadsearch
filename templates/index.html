@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div style="text-align:center" class="ui input">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.subreddit.label }}<br>
+            {{ form.subreddit(size=32) }}<br>
+            {% for error in form.subreddit.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.thread.label }}<br>
+            {{ form.thread(size=32) }}<br>
+            {% for error in form.thread.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+        </p>
+        <p>
+            {{ form.postAuthor.label }}<br>
+            {{ form.postAuthor(size=32) }}<br>
+            {% for error in form.postAuthor.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.searchTerm.label }}<br>
+            {{ form.searchTerm(size=32) }}<br>
+            {% for error in form.searchTerm.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.searchNumber.label }}<br>
+            {{ form.searchNumber(size=32) }}<br>
+            {% for error in form.searchNumber.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+  </div>
+{% endblock %}

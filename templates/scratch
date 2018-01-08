@@ -1,0 +1,20 @@
+{% macro printComment(comment, top) %}
+  <div style="margin-left=20px">
+    <p> hello </p>
+    {% if top %}
+      <a href="http://reddit.com{{comment.permalink}}"> {{ comment.body }} </a>
+    {% else %}
+      <p> {{ comment.body }} </p>
+    {% endif %}
+
+    {% if comment.replies %}
+      {{ printComment(comment.replies[0], false) }}
+    {$ endif %}
+    <!-- {%- for nextcomment in comment.replies %}
+      <p> <p> {{ nextcomment.body }}</p> </p>
+      {% if nextcomment.__name__=="Comment" %}
+      {{ printComment(nextcomment, true) }}
+      {% endif %}
+    {%- endfor %} -->
+  </div>
+{% endmacro %}
