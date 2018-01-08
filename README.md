@@ -2,7 +2,7 @@
 
 This project is used to search recurring Reddit threads. The motivation
 for this project comes from my time spent searching for and opening a
-group of daily chat Reddit threads and CRTR-Fing over and over.
+group of daily chat Reddit threads and "CTRL-F"ing over and over.
 
 ## Deployment
 
