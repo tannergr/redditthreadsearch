@@ -10,6 +10,9 @@ COMMENT_DEPTH = 20
 app = Flask(__name__)
 app.config.from_object(config.Config)
 
+if __name__ == '__main__':
+    app.run(debug=True, use_reloader=True)
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = searchForm.Form()
