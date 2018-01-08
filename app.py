@@ -3,6 +3,7 @@ from flask import render_template, flash, redirect, request, Markup
 import searchForm
 import config
 import praw
+import os
 
 MAX_VALUES = 30
 COMMENT_DEPTH = 20
